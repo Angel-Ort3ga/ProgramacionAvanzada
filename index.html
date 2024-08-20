@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style type="text/css">
+        canvas{
+            background-color: gray;
+        }
+       
+    </style>
+</head>
+<body>
+    
+    <canvas id="my_canvas" width="500" height="500"></canvas>
+    
+    <script type="text/javascript">
+        const my_canvas = document.getElementById('my_canvas');
+        const ctx = my_canvas.getContext('2d');
+
+        ctx.strokeRect(20,20,100,100);
+
+        //cuadradros
+        ctx.fillStyle="orange";
+        ctx.fillRect(100,100,100,100);
+
+        ctx.fillStyle="pink";
+        ctx.fillRect(180,180,100,100);
+
+        ctx.fillStyle="rgba(175, 250, 116,0.5)";
+        ctx.fillRect(260,260,100,100);
+
+        ctx.lineWidth="4";
+        ctx.strokeStyle="blue";
+        ctx.strokeRect(340,340,100,100);
+
+        ctx.beginPath();
+        ctx.moveTo(400,100);
+        ctx.lineTo(400,200);
+        ctx.closePath();
+        ctx.stroke();
+
+        //Triangulo    
+
+        ctx.beginPath();
+        ctx.moveTo(150,300);
+        ctx.lineTo(60,450);
+        ctx.lineTo(220,450);
+        ctx.closePath();
+        ctx.stroke();
+        ctx.fill();
+
+        //Circulo
+        
+        ctx.beginPath();
+        ctx.arc(300,80,60,0,2 * Math.PI);
+        ctx.stroke();
+        ctx.fill();
+
+        //arco ,(boca)
+        ctx.beginPath();
+        ctx.arc(300,100,20,0.48,0.9 * Math.PI);
+        ctx.stroke();
+
+        //ojos
+        
+        ctx.beginPath();
+        ctx.arc(278,70,15,0,2 * Math.PI);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(322,70,15,0,2 * Math.PI);
+        ctx.stroke();
+
+        ctx.font ="25px Times New Roman";
+        ctx.strokeText("Hola Mundo",50,50)
+        ctx.strokeStyle="pink";
+        ctx.fillStyle="red";
+        ctx.fillText("Hola Mundo",50,50);
+
+        var grd = ctx.createLinearGradient(0,0,500,500)
+        grd.addColorStop(0, "red");
+        grd.addColorStop(0.5, "green");
+        grd.addColorStop(1, "blue");
+
+        ctx.fillStyle=grd;
+        ctx.fillRect(30,200,100,100);
+
+        var grd2 = ctx.createRadialGradient(200,150,100,200,150,100)
+        grd2.addColorStop(0, "pink");
+        grd2.addColorStop(0.9, "white");
+        grd2.addColorStop(1, "green");
+
+        ctx.fillStyle = grd2;
+        ctx.fillRect(200,100,200,300);
+
+        var image = new Image();
+        image.src = "stich.png";
+
+        ctx.drawImage(imagen,300,150,100,100);
+
+    </script>
+</body>
+</html>
