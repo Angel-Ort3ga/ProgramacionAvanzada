@@ -3,99 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canvas Drawing</title>
-    <style>
-        canvas {
-            border: 1px solid black;
+    <title></title>
+    <style type="text/css">
+        canvas{
+            background-color: rgb(226, 208, 230);
         }
+       
     </style>
 </head>
 <body>
+    
     <canvas id="my_canvas" width="500" height="500"></canvas>
-
+    
     <script type="text/javascript">
         const my_canvas = document.getElementById('my_canvas');
         const ctx = my_canvas.getContext('2d');
-        
-        const circleRadius = 30;
-        const squareSize = 60;
-        const dotSize = 4; // Tamaño del punto en la estela
-        let shape = 'circle'; // Forma inicial
-        let drawColor = getRandomColor(); // Color inicial
-        let isDrawing = false; // Estado para saber si el mouse está presionado
 
-        // Función para generar un color aleatorio con transparencia
+        document.addEventListener("keydown", function(e){
+
+            ctx.fillStyle = getRandomColor();
+
+            let w = Math.random() * 450;
+            let h = Math.random() * 450;
+
+            ctx.fillRect(w, h, 50, 50)
+            ctx.strokeRect(w, h, 50, 50)
+           
+            ctx.font ="40px AcademyEngravedLetPlain";
+            ctx.strokeText(e.key,w+10,h+25)
+
+        })
+
+        document.addEventListener("keypress",(e)=>{
+
+        })
+       
         function getRandomColor() {
-            const r = Math.floor(Math.random() * 256);
-            const g = Math.floor(Math.random() * 256);
-            const b = Math.floor(Math.random() * 256);
-            return `rgba(${r}, ${g}, ${b}, 0.5)`;
-        }
-
-        // Función para dibujar un círculo en una posición dada
-        function drawCircle(x, y) {
-            ctx.beginPath();
-            ctx.arc(x, y, circleRadius, 0, Math.PI * 2);
-            ctx.fillStyle = drawColor;
-            ctx.fill();
-        }
-
-        // Función para dibujar un cuadrado en una posición dada
-        function drawSquare(x, y) { 
-            ctx.beginPath();
-            ctx.rect(x - squareSize / 2, y - squareSize / 2, squareSize, squareSize);
-            ctx.fillStyle = drawColor;
-            ctx.fill();
-        }
-
-        // Función para dibujar un punto negro en una posición dada
-        function drawDot(x, y) {
-            ctx.beginPath();
-            ctx.arc(x, y, dotSize, 0, Math.PI * 2);
-            ctx.fillStyle = 'black';
-            ctx.fill();
-        }
-
-        // Evento para dibujar una forma en la posición del clic
-        my_canvas.addEventListener('click', (event) => {
-            const rect = my_canvas.getBoundingClientRect();
-            const x = event.clientX - rect.left;
-            const y = event.clientY - rect.top;
-
-            drawColor = getRandomColor(); // Generar un nuevo color para cada clic
-
-            if (shape === 'circle') {
-                drawCircle(x, y); // Dibujar un círculo
-            } else {
-                drawSquare(x, y); // Dibujar un cuadrado
-            }
-        });
-
-        // Evento para cambiar la forma cuando el mouse sale y vuelve a entrar al canvas
-        my_canvas.addEventListener('mouseout', () => {
-            shape = shape === 'circle' ? 'square' : 'circle';
-        });
-        
-        // Evento para iniciar la estela de puntitos cuando el mouse está presionado
-        my_canvas.addEventListener('mousedown', () => {
-            isDrawing = true;
-        });
-        
-        // Evento para detener la estela de puntitos cuando el mouse se suelta
-        my_canvas.addEventListener('mouseup', () => {
-            isDrawing = false;
-        });
-        
-        // Evento para dibujar una estela negra o puntos mientras el mouse se mueve sobre el canvas
-        my_canvas.addEventListener('mousemove', (event) => {
-            const rect = my_canvas.getBoundingClientRect();
-            const x = event.clientX - rect.left;
-            const y = event.clientY - rect.top;
-
-            if (isDrawing) {
-                drawDot(x, y);
-            }
-        });
+		  var trans = '0.5'; 
+		  var color = 'rgba(';
+		  for (var i = 0; i < 3; i++) {
+		    color += Math.floor(Math.random() * 255) + ',';
+		  }
+		  color += trans + ')'; 
+		  return color;
+		}
     </script>
 </body>
 </html>
