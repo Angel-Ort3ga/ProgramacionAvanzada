@@ -18,26 +18,39 @@
     <script type="text/javascript">
         const my_canvas = document.getElementById('my_canvas');
         const ctx = my_canvas.getContext('2d');
+        var s_x= 280, s_y= 280;
 
         document.addEventListener("keydown", function(e){
 
             ctx.fillStyle = getRandomColor();
 
-            let w = Math.random() * 450;
-            let h = Math.random() * 450;
+            switch(e.keyCode)
+            {
+                case 87:
+                    s_y -=10;
+                break
+                case 83:
+                    s_y +=10;
+                break
+                case 65:
+                    s_x -=10;
+                break
+                case 68:
+                    s_x +=10;
+                break
+            }
 
-            ctx.fillRect(w, h, 50, 50)
-            ctx.strokeRect(w, h, 50, 50)
+           // let w = Math.random() * 450;
+           // let h = Math.random() * 450;
+
+            ctx.fillRect(s_x, s_y, 50, 50)
+            ctx.strokeRect(s_x, s_y, 50, 50)
            
-            ctx.font ="40px AcademyEngravedLetPlain";
-            ctx.strokeText(e.key,w+10,h+25)
+            //ctx.font ="40px AcademyEngravedLetPlain";
+            //ctx.strokeText(e.key,w+10,h+25)
 
         })
 
-        document.addEventListener("keypress",(e)=>{
-
-        })
-       
         function getRandomColor() {
 		  var trans = '0.5'; 
 		  var color = 'rgba(';
