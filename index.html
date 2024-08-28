@@ -36,10 +36,9 @@
                     direction = "left";
                 break
                 case 68:
-                    direction = "rigth";
+                    direction = "right";
                 break
             }
-
         })
 
         function update(){
@@ -47,25 +46,25 @@
             {
                 case "up":
                     s_y -=10;
-                    if(s_y+50>530){
-                        s_y = -40;
+                    if(s_y + 50 < 0){
+                        s_y = 520;
                     }
                 break
                 case "down":
                     s_y +=10;
-                    if(s_y+50>530){
+                    if(s_y + 50 > 520){
                         s_y = -40;
                     }
                 break
                 case "left":
                     s_x -=10;
-                    if(s_x+50>530){
-                        s_x = -40;
+                    if(s_x + 50 < 0){
+                        s_x = 520;
                     }
                 break
-                case "rigth":
+                case "right":
                     s_x +=10;
-                   if(s_x+50>530){
+                   if(s_x + 50 > 520){
                         s_x = -40;
                     }
                 break
