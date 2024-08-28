@@ -19,32 +19,66 @@
         const my_canvas = document.getElementById('my_canvas');
         const ctx = my_canvas.getContext('2d');
         var s_x= 280, s_y= 280;
+        var direction = "";
+        //var speed = "";
 
         document.addEventListener("keydown", function(e){
-
-            ctx.fillRect(0,0,500,500);
-
-            ctx.fillStyle = getRandomColor();
-
 
             switch(e.keyCode)
             {
                 case 87:
-                    s_y -=10;
+                    direction = "up";
                 break
                 case 83:
-                    s_y +=10;
+                    direction = "down";
                 break
                 case 65:
-                    s_x -=10;
+                    direction = "left";
                 break
                 case 68:
-                    s_x +=10;
+                    direction = "rigth";
                 break
             }
 
-           // let w = Math.random() * 450;
-           // let h = Math.random() * 450;
+        })
+
+        function update(){
+            switch(direction)
+            {
+                case "up":
+                    s_y -=10;
+                    if(s_y+50>530){
+                        s_y = -40;
+                    }
+                break
+                case "down":
+                    s_y +=10;
+                    if(s_y+50>530){
+                        s_y = -40;
+                    }
+                break
+                case "left":
+                    s_x -=10;
+                    if(s_x+50>530){
+                        s_x = -40;
+                    }
+                break
+                case "rigth":
+                    s_x +=10;
+                   if(s_x+50>530){
+                        s_x = -40;
+                    }
+                break
+            }
+        }
+
+        function pintar(){
+
+            ctx.fillStyle = "pink" ;
+            ctx.fillRect(0,0,500,500);
+
+            ctx.fillStyle = getRandomColor();
+
 
             ctx.fillRect(s_x, s_y, 50, 50)
             ctx.strokeRect(s_x, s_y, 50, 50)
@@ -52,7 +86,13 @@
             //ctx.font ="40px AcademyEngravedLetPlain";
             //ctx.strokeText(e.key,w+10,h+25)
 
-        })
+
+            update();
+            requestAnimationFrame(pintar);
+
+        }
+
+        requestAnimationFrame(pintar);
 
         function getRandomColor() {
 		  var trans = '0.5'; 
