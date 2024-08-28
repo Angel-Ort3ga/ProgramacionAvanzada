@@ -20,7 +20,7 @@
         const ctx = my_canvas.getContext('2d');
         var s_x= 280, s_y= 280;
         var direction = "";
-        //var speed = "";
+        var speed = 10 ;
 
         document.addEventListener("keydown", function(e){
 
@@ -38,6 +38,9 @@
                 case 68:
                     direction = "right";
                 break
+                case 32:
+                    speed += 10;
+                    break
             }
         })
 
@@ -45,25 +48,25 @@
             switch(direction)
             {
                 case "up":
-                    s_y -=10;
+                    s_y -= speed;
                     if(s_y + 50 < 0){
                         s_y = 520;
                     }
                 break
                 case "down":
-                    s_y +=10;
+                    s_y +=speed;
                     if(s_y + 50 > 520){
                         s_y = -40;
                     }
                 break
                 case "left":
-                    s_x -=10;
+                    s_x -=speed;
                     if(s_x + 50 < 0){
                         s_x = 520;
                     }
                 break
                 case "right":
-                    s_x +=10;
+                    s_x +=speed;
                    if(s_x + 50 > 520){
                         s_x = -40;
                     }
