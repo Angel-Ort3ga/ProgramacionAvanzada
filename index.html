@@ -18,9 +18,36 @@
     <script type="text/javascript">
         const my_canvas = document.getElementById('my_canvas');
         const ctx = my_canvas.getContext('2d');
-        var s_x= 280, s_y= 280;
+        //var s_x= 280, s_y= 280;
         var direction = "";
         var speed = 10 ;
+
+        class Rectangulo{
+            constructor(x, y, w, h, c, s ){
+                this.x= x;
+                this.y= y;
+                this.w= w;
+                this.h= h;
+                this.c= c;
+                this.s= s;
+            }
+            
+            tocar(otro){
+                if(this.x < otro.x + otro.w &&  
+                   this.x + this.w > otro.x &&   
+                   this.y < otro.y + otro.h &&    
+                   this.y + this.h > otro.y)
+                { 
+                   return true; 
+                }
+
+                return false;
+            }
+        }
+
+        var player = new Rectangulo(280,280,50,50,getRandomColor(),10);
+
+        var target = new Rectangulo(100,100,30,30,getRandomColor(),10);
 
         document.addEventListener("keydown", function(e){
 
@@ -48,29 +75,36 @@
             switch(direction)
             {
                 case "up":
-                    s_y -= speed;
-                    if(s_y + 50 < 0){
-                        s_y = 520;
+                    player.y -= speed;
+                    if(player.y + 50 < 0){
+                        player.y = 520;
                     }
                 break
                 case "down":
-                    s_y +=speed;
-                    if(s_y + 50 > 520){
-                        s_y = -40;
+                    player.y +=speed;
+                    if(player.y + 50 > 520){
+                        player.y = -40;
                     }
                 break
                 case "left":
-                    s_x -=speed;
-                    if(s_x + 50 < 0){
-                        s_x = 520;
+                    player.x -=speed;
+                    if(player.x + 50 < 0){
+                        player.x = 520;
                     }
                 break
                 case "right":
-                    s_x +=speed;
-                   if(s_x + 50 > 520){
-                        s_x = -40;
+                    player.x +=speed;
+                   if(player.x + 50 > 520){
+                        player.x = -40;
                     }
                 break
+            }
+
+            if(player.tocar(target)){
+
+                target.c= getRandomColor();
+                target.x= Math.floor(Math.random() * 450);
+                target.y= Math.floor(Math.random() * 450);
             }
         }
 
@@ -81,9 +115,15 @@
 
             ctx.fillStyle = getRandomColor();
 
+            //player
+            ctx.fillStyle = player.c;
+            ctx.fillRect(player.x, player.y, 50, 50)
+            ctx.strokeRect(player.x, player.y, 50, 50)
 
-            ctx.fillRect(s_x, s_y, 50, 50)
-            ctx.strokeRect(s_x, s_y, 50, 50)
+            //player
+            ctx.fillStyle = target.c;
+            ctx.fillRect(target.x, target.y, target.w, target.h)
+            ctx.strokeRect(target.x, target.y, target.w, target.h)
            
             //ctx.font ="40px AcademyEngravedLetPlain";
             //ctx.strokeText(e.key,w+10,h+25)
