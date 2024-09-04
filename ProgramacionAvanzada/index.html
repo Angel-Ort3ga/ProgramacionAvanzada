@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style type="text/css">
+        canvas{
+            background-color: rgb(226, 208, 230);
+        }
+       
+    </style>
+</head>
+<body>
+    
+    <canvas id="my_canvas" width="500" height="500"></canvas>
+    
+    <script type="text/javascript">
+        const my_canvas = document.getElementById('my_canvas');
+        const ctx = my_canvas.getContext('2d');
+        //var s_x= 280, s_y= 280;
+        var direction = "";
+        var speed = 10 ;
+        var walls = [];
+        var pause = false;
+        var score = 0;
+
+        var imagen = new Image();
+		imagen.src = "stich.png";
+
+        var imagen2 = new Image();
+        imagen2.src = "stitch.png";
+
+        const audio = new Audio("cuak.mp3");
+        const audio2 = new Audio("error.mp3");
+        const audio3 = new Audio("pew_pew.mp3");
+        const audio4 = new Audio("el.mp3");
+
+        class Rectangulo{
+            constructor(x, y, w, h, c, s ){
+                this.x= x;
+                this.y= y;
+                this.w= w;
+                this.h= h;
+                this.c= c;
+                this.s= s;
+            }
+            
+            tocar(otro){
+                if(this.x < otro.x + otro.w &&  
+                   this.x + this.w > otro.x &&   
+                   this.y < otro.y + otro.h &&    
+                   this.y + this.h > otro.y)
+                { 
+                   return true; 
+                }
+
+                return false;
+            }
+        }
+
+        var player = new Rectangulo(280,280,50,50,getRandomColor(),10);
+
+        var target = new Rectangulo(100,100,30,30,getRandomColor(),10);
+
+        
+       
+        walls.push(wall = new Rectangulo(75,400,350,20,getRandomColor(),10));
+        walls.push(wall2 = new Rectangulo(75,100,350,20,getRandomColor(),10));
+        
+
+        document.addEventListener("keydown", function(e){
+
+            switch(e.keyCode)
+            {
+                case 87:
+                    direction = "up";
+                break
+                case 83:
+                    direction = "down";
+                break
+                case 65:
+                    direction = "left";
+                break
+                case 68:
+                    direction = "right";
+                break
+                case 32:
+                    pause = !pause;
+                    audio.play();
+                break
+            }
+        })
+
+        function update(){
+
+            if(!pause){
+
+                switch(direction){
+                    case "up":
+                        player.y -= speed;
+                        if(player.y + 50 < 0){
+                            player.y = 520;
+                        }
+                    break
+                    case "down":
+                        player.y +=speed;
+                        if(player.y + 50 > 520){
+                            player.y = -40;
+                        }
+                    break
+                    case "left":
+                        player.x -=speed;
+                        if(player.x + 50 < 0){
+                            player.x = 520;
+                        }
+                    break
+                    case "right":
+                        player.x +=speed;
+                    if(player.x + 50 > 520){
+                            player.x = -40;
+                        }
+                    break
+                }
+                
+            }
+
+            if(player.tocar(target)){
+
+                target.c= getRandomColor();
+                target.x= Math.floor(Math.random() * 450);
+                target.y= Math.floor(Math.random() * 450);
+                score += 5;
+                speed += 1;
+                audio3.play();
+
+            }
+
+            
+
+                if(player.tocar(wall) || player.tocar(wall2)){
+
+                    switch(direction){
+                    case "up":
+                        player.y += speed;
+                    break
+                    case "down":
+                        player.y -=speed;
+                    break
+                    case "left":
+                        player.x +=speed;
+                    break
+                    case "right":
+                        player.x -=speed;
+                    break
+                    }
+                    audio2.play();
+                }
+            
+        }
+
+        function pintar(){
+
+            ctx.fillStyle = "pink" ;
+            ctx.fillRect(0,0,500,500);
+
+            ctx.fillStyle = getRandomColor();
+
+            //player
+            ctx.fillStyle = player.c;
+            ctx.fillRect(player.x, player.y, 50, 50)
+            ctx.strokeRect(player.x, player.y, 50, 50)
+            ctx.drawImage(imagen,player.x, player.y, 50, 50)
+
+            //target
+            ctx.fillStyle = target.c;
+            ctx.fillRect(target.x, target.y, target.w, target.h)
+            ctx.strokeRect(target.x, target.y, target.w, target.h)
+            ctx.drawImage(imagen2,target.x, target.y, target.w, target.h)
+
+            walls.forEach(function (wall, i, array){
+
+                //wall
+                ctx.fillStyle = wall.c;
+                ctx.fillRect(wall.x, wall.y, wall.w, wall.h)
+                ctx.strokeRect(wall.x, wall.y, wall.w, wall.h)
+
+            });
+
+                //score
+                ctx.fillStyle = "black";
+                ctx.font ="30px Pixelify Sans";
+                ctx.strokeText("SCORE: "+ score,30,50);
+           
+
+            if (pause){
+
+                ctx.fillStyle = "rgba(172,6,135,0.21)" ;
+                ctx.fillRect(0,0,500,500);
+
+                ctx.font ="60px Pixelify Sans";
+                ctx.strokeText("P A U S E",120,250);
+            }
+         
+            update();
+            requestAnimationFrame(pintar);
+        
+        }
+
+        requestAnimationFrame(pintar);
+
+        function getRandomColor() {
+		  var trans = '0.5'; 
+		  var color = 'rgba(';
+		  for (var i = 0; i < 3; i++) {
+		    color += Math.floor(Math.random() * 255) + ',';
+		  }
+		  color += trans + ')'; 
+		  return color;
+		}
+    </script>
+</body>
+</html>
