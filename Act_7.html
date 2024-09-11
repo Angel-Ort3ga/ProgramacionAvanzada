@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue js</title>
+    <style>
+       
+    </style>
+</head>
+<body>
+
+    <div id="main">
+
+        <h2>
+            Bienvenido a la aplicacion: {{title}}
+        </h2>
+
+        <form>
+            <fieldset>
+                <label>
+                    Nombre: 
+                </label>
+                <input v-model="name" placeholder="write Here" name="">
+                <br>
+
+                <label></label>
+                    Rol: 
+                </label>
+                <input v-model="rol" placeholder="write Here" name="">
+                <br>
+
+                <button v-on:click="addUser">
+                    Agregar Usuario
+                </button>
+            
+            </fieldset>
+        </form>
+
+
+        <ul>
+            <li v-for="(item, index) in User ":key = "index">
+                {{ item.name }} {{ item.rol}}
+            </li>
+        </ul>
+
+        
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script>
+    const { createApp, ref } = Vue
+
+    createApp({
+
+        setup() {
+
+            const title = ref('Hello vue!')
+            let name = ref('')
+            let rol = ref('')
+            let resultado = ref(0) 
+            let num1 = ref(0) 
+            let num2 = ref(0) 
+
+            let User = ref([
+                {
+                   "name":"juan",
+                   "rol":"front"
+                },
+
+                {
+                   "name":"angel",
+                   "rol":"front"
+                } 
+            ])
+
+            return {
+                title,
+                name,
+                count: ref(0),
+                resultado,
+                num1,
+                num2,
+                User
+            }
+        },
+
+        methds:{
+
+            addUser()
+            {
+
+                this.User.push({
+                    name:this.name,
+                    rol:this.rol
+                })
+
+                this.name=''
+                this.rol=''
+            }
+        }
+
+    }).mount('#main')
+    </script>
+</body>
+</html>
