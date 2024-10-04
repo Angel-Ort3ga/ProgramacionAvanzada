@@ -1,0 +1,82 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #31b82c;
+  margin: 0;
+  padding: 0;
+  text-align: flex-start;
+}
+fieldset {
+  background-color: #8ed89a;
+  border: 2px solid #68cb78;
+  width: 400px;
+  margin: 10px auto;
+  padding: 20px;
+  border-radius: 10px;
+}
+fieldset legend {
+  color: #2864be;
+  padding: 0 10px;
+  font-size: 1.2em;
+}
+fieldset input[type="email"],
+fieldset input[type="password"] {
+  width: 100%;
+  padding: 5px;
+  margin-top: 5px;
+  border: 1px solid #9e9595;
+  border-radius: 5px;
+  background-color: #807676;
+}
+fieldset label {
+  display: block;
+  margin: 5px 0;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: normal;
+}
+fieldset label[for="admin"] {
+  background-color: #007bff;
+  color: #ffffff;
+}
+fieldset label[for="manager"] {
+  background-color: #28a745;
+  color: #ffffff;
+}
+fieldset label[for="owner"] {
+  background-color: #ffc107;
+  color: #000000;
+}
+fieldset label[for="sales"] {
+  background-color: #dc3545;
+  color: #ffffff;
+}
+fieldset label[for="prospect"] {
+  background-color: #ff5733;
+  color: #ffffff;
+}
+fieldset input[type="radio"]:checked + label {
+  border: 2px solid #301450;
+  background-color: #daf2de;
+}
+button {
+  background-color: #481e79;
+  color: #8ed89a;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+button:hover {
+  background-color: #170a27;
+}
+a {
+  display: block;
+  margin-top: 10px;
+  color: #6c757d;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}

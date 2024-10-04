@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Less</title>
+    <link rel="shortcut icon" href="icono.png" />
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <fieldset>
+      <legend><h3>Formulario de Acceso</h3></legend>
+
+      <fieldset>
+        <legend><label for="email">Correo Electrónico</label></legend>
+        <input type="email" id="email" />
+      </fieldset>
+
+      <fieldset>
+        <legend><label for="password">Contraseña</label></legend>
+        <input type="password" id="password" />
+      </fieldset>
+
+      <!-- Botones de radio para seleccionar el rol -->
+      <fieldset>
+        <legend>Selecciona tu rol</legend>
+
+        <label for="admin"
+          ><input type="radio" id="admin" name="rol" value="admin" />
+          Administrador</label
+        ><br />
+        <label for="manager"
+          ><input type="radio" id="manager" name="rol" value="manager" />
+          Gerente</label
+        ><br />
+        <label for="owner"
+          ><input type="radio" id="owner" name="rol" value="owner" />
+          Propietario</label
+        ><br />
+        <label for="sales"
+          ><input type="radio" id="sales" name="rol" value="sales" /> Agente de
+          Ventas</label
+        ><br />
+        <label for="prospect"
+          ><input type="radio" id="prospect" name="rol" value="prospect" />
+          Prospecto</label
+        >
+      </fieldset>
+
+      <button>Acceder</button>
+    </fieldset>
+    <a href="">¿Olvidó su contraseña?</a>
+  </body>
+</html>

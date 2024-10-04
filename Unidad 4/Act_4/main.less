@@ -1,0 +1,99 @@
+@primary-bg: #31b82c;
+@form-bg: #8ed89a;
+@text-color: #2864be;
+@input-bg: #807676;
+@input-border: #9e9595;
+@button-color: #481e79;
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: @primary-bg;
+  margin: 0;
+  padding: 0;
+  text-align: flex-start;
+}
+
+fieldset {
+  background-color: @form-bg;
+  border: 2px solid darken(@form-bg, 10%);
+  width: 400px;
+  margin: 10px auto;
+  padding: 20px;
+  border-radius: 10px;
+
+  legend {
+    color: @text-color;
+    padding: 0 10px;
+    font-size: 1.2em;
+  }
+
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+    border: 1px solid @input-border;
+    border-radius: 5px;
+    background-color: @input-bg;
+  }
+
+  label {
+    display: block;
+    margin: 5px 0;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: normal;
+  }
+
+  label[for="admin"] {
+    background-color: #007bff;
+    color: #ffffff;
+  }
+  label[for="manager"] {
+    background-color: #28a745;
+    color: #ffffff;
+  }
+  label[for="owner"] {
+    background-color: #ffc107;
+    color: #000000;
+  }
+  label[for="sales"] {
+    background-color: #dc3545;
+    color: #ffffff;
+  }
+  label[for="prospect"] {
+    background-color: #ff5733;
+    color: #ffffff;
+  }
+
+  input[type="radio"]:checked + label {
+    border: 2px solid darken(@button-color, 10%);
+    background-color: lighten(@form-bg, 20%);
+  }
+}
+
+button {
+  background-color: @button-color;
+  color: @form-bg;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+
+  &:hover {
+    background-color: darken(@button-color, 20%);
+  }
+}
+
+a {
+  display: block;
+  margin-top: 10px;
+  color: #6c757d;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
