@@ -14,7 +14,7 @@
     <div class="d-flex vh-100">
       <nav
         class="sidebar bg-dark text-white p-3 d-flex flex-column justify-content-between d-none d-md-block"
-        style="min-width: 150px"
+        style="min-width: 200px"
       >
         <div>
           <h3 class="pb-3">Sidebar</h3>
@@ -38,7 +38,7 @@
         </div>
 
         <!-- Dropdown -->
-        <div class="position-absolute bottom-0 start-2 dropdown">
+        <div class="dropdown">
           <a
             class="nav-link dropdown-toggle text-white d-flex align-items-center"
             href="#"
@@ -52,8 +52,8 @@
               src="icono2.png"
               alt="Icon"
               class="rounded-circle me-2"
-              width="30"
-              height="30"
+              width="40"
+              height="40"
             />
             <span class="text-white active">mdo</span>
           </a>
@@ -109,14 +109,33 @@
                   Search
                 </button>
               </form>
-              <div class="ms-3 d-flex align-items-center">
-                <img
-                  src="icono2.png"
-                  alt="Icon"
-                  class="rounded-circle"
-                  width="30"
-                  height="30"
-                />
+              <!-- Dropdown -->
+              <div class="dropdown">
+                <a
+                  class="nav-link dropdown-toggle text-white d-flex align-items-center"
+                  href="#"
+                  id="dropdownMenuButton"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <!-- Icono -->
+                  <img
+                    src="icono2.png"
+                    alt="Icon"
+                    class="rounded-circle me-2"
+                    width="40"
+                    height="40"
+                  />
+                  <span class="text-white active">mdo</span>
+                </a>
+
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <li><a class="dropdown-item" href="#">Profile</a></li>
+                  <li><a class="dropdown-item" href="#">Settings</a></li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li><a class="dropdown-item" href="#">Logout</a></li>
+                </ul>
               </div>
             </div>
           </div>
